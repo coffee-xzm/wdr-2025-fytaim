@@ -7,5 +7,5 @@
     resolution_height: 1080
     offsetX: 0
     offsetY: 0
-    camera_name: "daheng"
+    camera_name: narrow_stereo
     recording: false    #是否录制

@@ -40,6 +40,7 @@ public:
 
 private:
   FixedPacketTool<16>::SharedPtr packet_tool_;
+  FixedPacketTool<28>::SharedPtr packet_tool_1;
 };
 }  // namespace fyt::serial_driver::protocol
 

@@ -20,6 +20,9 @@ ProtocolInfantry::ProtocolInfantry(std::string_view port_name, bool enable_data_
   auto uart_transporter = std::make_shared<UartTransporter>(std::string(port_name));
   packet_tool_ = std::make_shared<FixedPacketTool<16>>(uart_transporter);
   packet_tool_->enbaleDataPrint(enable_data_print);
+
+  packet_tool_1 = std::make_shared<FixedPacketTool<28>>(uart_transporter);
+  packet_tool_1->enbaleDataPrint(enable_data_print);
 }
 
 void ProtocolInfantry::send(const rm_interfaces::msg::GimbalCmd &data) {
@@ -32,12 +35,13 @@ void ProtocolInfantry::send(const rm_interfaces::msg::GimbalCmd &data) {
 }
 
 bool ProtocolInfantry::receive(rm_interfaces::msg::SerialReceiveData &data) {
-  FixedPacket<16> packet;
-  if (packet_tool_->recvPacket(packet)) {
-    packet.unloadData(data.mode, 1);
-    packet.unloadData(data.roll, 2);
-    packet.unloadData(data.pitch, 6);
-    packet.unloadData(data.yaw, 10);
+  // FixedPacket<16> packet;
+  FixedPacket<28> packet;
+  if (packet_tool_1->recvPacket(packet)) {
+    packet.unloadData(data.mode, 2);
+    packet.unloadData(data.roll, 3);
+    packet.unloadData(data.pitch, 7);
+    packet.unloadData(data.yaw, 11);
     return true;
   } else {
     return false;
