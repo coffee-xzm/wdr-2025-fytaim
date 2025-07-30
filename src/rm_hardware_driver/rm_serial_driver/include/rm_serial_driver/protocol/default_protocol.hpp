@@ -30,7 +30,8 @@ public:
 
   bool receive(rm_interfaces::msg::SerialReceiveData &data) override;
 
-  std::vector<rclcpp::SubscriptionBase::SharedPtr> getSubscriptions(rclcpp::Node::SharedPtr node) override;
+  std::vector<rclcpp::SubscriptionBase::SharedPtr> getSubscriptions(
+    rclcpp::Node::SharedPtr node) override;
 
   std::vector<rclcpp::Client<rm_interfaces::srv::SetMode>::SharedPtr> getClients(
     rclcpp::Node::SharedPtr node) const override;
@@ -39,6 +40,7 @@ public:
 
 private:
   FixedPacketTool<16>::SharedPtr packet_tool_;
+  FixedPacketTool<28>::SharedPtr packet_tool_1;
 };
 }  // namespace fyt::serial_driver::protocol
 

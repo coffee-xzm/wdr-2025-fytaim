@@ -49,12 +49,17 @@ void DefaultProtocol::send(const rm_interfaces::msg::GimbalCmd &data) {
 }
 
 bool DefaultProtocol::receive(rm_interfaces::msg::SerialReceiveData &data) {
-  FixedPacket<16> packet;
-  if (packet_tool_->recvPacket(packet)) {
-    packet.unloadData(data.mode, 1);
-    packet.unloadData(data.roll, 2);
-    packet.unloadData(data.pitch, 6);
-    packet.unloadData(data.yaw, 10);
+  // FixedPacket<16> packet;
+  FixedPacket<28> packet;
+  if (packet_tool_1->recvPacket(packet)) {
+    // packet.unloadData(data.mode, 1);
+    // packet.unloadData(data.roll, 2);
+    // packet.unloadData(data.pitch, 6);
+    // packet.unloadData(data.yaw, 10);
+    packet.unloadData(data.mode, 2);
+    packet.unloadData(data.roll, 3);
+    packet.unloadData(data.pitch, 7);
+    packet.unloadData(data.yaw, 11);
     return true;
   } else {
     return false;
