@@ -102,11 +102,11 @@ void SerialDriverNode::listenLoop() {
       receive_data.header.frame_id = target_frame_;
       serial_receive_data_pub_->publish(receive_data);
 
-      for (auto &[service_name, client] : set_mode_clients_) {
-        if (client.mode.load() != receive_data.mode && !client.on_waiting.load()) {
-          setMode(client, receive_data.mode);
-        }
-      }
+      // for (auto &[service_name, client] : set_mode_clients_) {
+      //   if (client.mode.load() != receive_data.mode && !client.on_waiting.load()) {
+      //     setMode(client, receive_data.mode);
+      //   }
+      // }
 
       geometry_msgs::msg::TransformStamped t;
       timestamp_offset_ = this->get_parameter("timestamp_offset").as_double();

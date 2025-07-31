@@ -29,7 +29,7 @@ namespace fyt::serial_driver {
 // 串口数据传输设备，符合通用传输接口。
 class UartTransporter : public TransporterInterface {
 public:
-  UartTransporter(const std::string &device_path = "/dev/ttyUSB0",
+  UartTransporter(const std::string &device_path = "/dev/ttyACM0",
                   int speed = 115200,
                   int flow_ctrl = 0,
                   int databits = 8,
